@@ -14,17 +14,6 @@ function App() {
   useEffect(() => {
     getMovies();
   },[])
-  
-  // function getMovies() {
-  //   axios.get(`${apiUrl}/search/movie`, {
-  //   params: {
-  //     api_key: apiKey,
-  //     query: searchValue,
-  //   }  
-  // }).then((resp) => {
-  //   setMovies(resp.data.results)
-  // })
-  // }
 
   function getMovies() {
   

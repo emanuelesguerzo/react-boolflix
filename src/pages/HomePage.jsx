@@ -26,15 +26,16 @@ function HomePage() {
             <ul>
                 {movies.map((curMovie) => (
                     <li key={curMovie.id}>
+                        <img src={curMovie.poster_path ? `https://image.tmdb.org/t/p/w342/${curMovie.poster_path}` : "https://placehold.co/342x400"} alt="Locandina" />
                         <h3>{curMovie.title || curMovie.name}</h3>
                         <h4>{curMovie.original_title || curMovie.original_name}</h4>
-                        <span>
+                        <div>
                             <img
                                 src={getFlag(curMovie.original_language)}
                                 alt={curMovie.original_language}
                             />
-                        </span>
-                        <span>{curMovie.vote_average}</span>
+                        </div>
+                        <div>{curMovie.vote_average}</div>
                     </li>
                 ))}
             </ul>
