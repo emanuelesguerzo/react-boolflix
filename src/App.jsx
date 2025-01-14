@@ -1,21 +1,48 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import GlobalContext from "./contexts/GlobalContext";
+import axios from 'axios';
+const apiUrl = "https://api.themoviedb.org/3";
+const apiKey = "7491f98d6fabe3982ffbec8bbc81710a"
 
 function App() {
+  
+  const [searchValue, setSearchValue] = useState("");
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    getMovies();
+  },[])
+  
+  function getMovies() {
+    axios.get(`${apiUrl}/search/movie`, {
+    params: {
+      api_key: apiKey,
+      query: searchValue,
+    }  
+  }).then((resp) => {
+    setMovies(resp.data.results)
+    console.log(resp.data.results)
+  })
+  }
+
+  const globalProviderValue = {
+    searchValue,
+    getMovies,
+    setSearchValue,
+    movies,
+  }
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-        
-      
-      
-      
-      </BrowserRouter>
-      
+      <GlobalContext.Provider value={globalProviderValue}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </BrowserRouter>
+      </GlobalContext.Provider>
     </>
   )
 }
