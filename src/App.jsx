@@ -23,7 +23,6 @@ function App() {
     }  
   }).then((resp) => {
     setMovies(resp.data.results)
-    console.log(resp.data.results)
   })
   }
 
