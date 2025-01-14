@@ -8,12 +8,22 @@ function HomePage() {
     function getFlag(languageCode) {
         switch (languageCode) {
             case "it":
-                return "../../public/img/it.png";
+                return "/img/it.png";
             case "en":
-                return "../../public/img/en.png";
+                return "/img/en.png";
             default:
-                return "../../public/img/placeholder.png";
+                return "/img/placeholder.png";
         }
+    }
+
+    function getRating(score) {
+        const stars = [];
+        const rating = Math.ceil(score / 2);
+
+        for(let i = 0; i < rating; i++) {
+            stars.push(<i key={i} className="fas fa-star"></i>)
+        }
+        return stars;
     }
 
     return (
@@ -26,7 +36,7 @@ function HomePage() {
             <ul>
                 {movies.map((curMovie) => (
                     <li key={curMovie.id}>
-                        <img src={curMovie.poster_path ? `https://image.tmdb.org/t/p/w342/${curMovie.poster_path}` : "https://placehold.co/342x400"} alt="Locandina" />
+                        <img src={curMovie.poster_path ? `https://image.tmdb.org/t/p/w342/${curMovie.poster_path}` : "https://placehold.co/342x400"}/>
                         <h3>{curMovie.title || curMovie.name}</h3>
                         <h4>{curMovie.original_title || curMovie.original_name}</h4>
                         <div>
@@ -35,7 +45,7 @@ function HomePage() {
                                 alt={curMovie.original_language}
                             />
                         </div>
-                        <div>{curMovie.vote_average}</div>
+                        <div>{getRating(curMovie.vote_average)}</div>
                     </li>
                 ))}
             </ul>

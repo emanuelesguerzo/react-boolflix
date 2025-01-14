@@ -34,7 +34,9 @@ function App() {
     Promise.all([movieRequest, tvRequest])
       .then(([movieResp, tvResp]) => {
         const moviesResults = movieResp.data.results;
+        console.log(moviesResults)
         const tvResults = tvResp.data.results;
+        console.log(tvResults)
         setMovies([...moviesResults, ...tvResults]);
       })
       .catch((error) => {
@@ -62,4 +64,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
