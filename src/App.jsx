@@ -15,15 +15,42 @@ function App() {
     getMovies();
   },[])
   
+  // function getMovies() {
+  //   axios.get(`${apiUrl}/search/movie`, {
+  //   params: {
+  //     api_key: apiKey,
+  //     query: searchValue,
+  //   }  
+  // }).then((resp) => {
+  //   setMovies(resp.data.results)
+  // })
+  // }
+
   function getMovies() {
-    axios.get(`${apiUrl}/search/movie`, {
-    params: {
-      api_key: apiKey,
-      query: searchValue,
-    }  
-  }).then((resp) => {
-    setMovies(resp.data.results)
-  })
+  
+    const movieRequest = axios.get(`${apiUrl}/search/movie`, {
+      params: {
+        api_key: apiKey,
+        query: searchValue,
+      },
+    });
+  
+    const tvRequest = axios.get(`${apiUrl}/search/tv`, {
+      params: {
+        api_key: apiKey,
+        query: searchValue,
+      },
+    });
+  
+    Promise.all([movieRequest, tvRequest])
+      .then(([movieResp, tvResp]) => {
+        const moviesResults = movieResp.data.results;
+        const tvResults = tvResp.data.results;
+        setMovies([...moviesResults, ...tvResults]);
+      })
+      .catch((error) => {
+        console.error("Errore durante la ricerca:", error);
+      });
   }
 
   const globalProviderValue = {

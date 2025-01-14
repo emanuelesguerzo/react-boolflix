@@ -26,8 +26,8 @@ function HomePage() {
             <ul>
                 {movies.map((curMovie) => (
                     <li key={curMovie.id}>
-                        <h3>{curMovie.title}</h3>
-                        <h4>{curMovie.original_title}</h4>
+                        <h3>{curMovie.title || curMovie.name}</h3>
+                        <h4>{curMovie.original_title || curMovie.original_name}</h4>
                         <span>
                             <img
                                 src={getFlag(curMovie.original_language)}
