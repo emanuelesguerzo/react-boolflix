@@ -76,6 +76,7 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   align-items: stretch;
+  margin-bottom: 40px;
 }
 
 /* Card */
@@ -85,7 +86,7 @@ body {
 }
 
 .card-container {
-  min-height: 700px; 
+  min-height: 550px; 
   position: relative;
 }
 
@@ -100,7 +101,7 @@ body {
 }
 
 .card-back {
-  background-color: var(--bg-color);
+  background-color: transparent;
   color: var(--main-text-color);
   padding: 20px;
   opacity: 0;
@@ -158,11 +159,13 @@ strong {
 }
 
 /* MEDIA QUERYS */
-@media screen and (max-width: 940px) {
+/* Laptop */
+@media screen and (max-width: 1024px) {
   .card {
     width: calc((100% - 40px) / 3);
   }
 }
+
 /* Tablet */
 @media screen and (max-width: 768px) {
   .card {
