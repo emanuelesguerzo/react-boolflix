@@ -21,7 +21,7 @@ function AppHeader() {
             </div>
             <div className="searchbar">
                 <button type="search" onClick={getMovies} >
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
                 <input type="search" placeholder="Cerca Film o Serie TV..." value={searchValue} onKeyUp={handleEnterKey} onChange={(event) => setSearchValue(event.target.value)} />
             </div>
