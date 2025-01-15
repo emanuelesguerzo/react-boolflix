@@ -26,12 +26,19 @@ function HomePage() {
         return stars;
     }
 
+    function handleEnterKey(event) {
+
+        if(event.key === "Enter") {
+            getMovies();
+        }
+    }
+
     return (
         <div>
             <h2>Benvenuto su Boolflix!</h2>
 
-            <input type="search" value={searchValue} onChange={(event) => setSearchValue(event.target.value)} />
-            <button type="search" onClick={getMovies}>Cerca</button>
+            <input type="search" value={searchValue} onKeyUp={handleEnterKey} onChange={(event) => setSearchValue(event.target.value)} />
+            <button type="search" onClick={getMovies} >Cerca</button>
 
             <ul>
                 {movies.map((curMovie) => (
