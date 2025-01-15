@@ -2,8 +2,9 @@
 :root {
   --main-color: #000000;
   --sub-color: #db0000;
-  --bg-color: #564d4d;
+  --bg-color: #242323;
   --main-text-color: #ffffff;
+  --stars-color: #daa520;
 }
 
 /* RESET */
@@ -13,9 +14,20 @@
   box-sizing: border-box;
 }
 
+ul {
+  list-style-type: none;
+}
+
+/* LAYOUT */
+.container {
+  margin: 0 auto;
+  width: 90%; 
+}
+
 /* TYPOGRAPHY */
 body {
   font-family: "Roboto", serif;
+  background-color: var(--bg-color);
 }
 
 /* HEADER */
@@ -24,13 +36,15 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: var(--main-color);
-  padding: 10px;
+  padding: 10px 20px;
+  margin-bottom: 40px;
 }
 
 .page-header .main-logo h1 {
   font-family:"Bebas Neue", serif;
   color: var(--sub-color);
-  font-size: 2.5rem
+  font-size: 2.5rem;
+  user-select: none;
 }
 
 .searchbar {
@@ -48,6 +62,122 @@ body {
 
 .searchbar input {
   color: var(--main-text-color);
-  border: none;
+  border: 1px solid var(--bg-color);
+  border-radius: 10px;
+  padding: 8px;
   background-color: var(--main-color);
+  font-size: 1.1rem;
+}
+
+/* MAIN */
+.movies-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Card */
+.card {
+  width: calc((100% - 60px) / 4);
+  cursor: pointer;
+}
+
+.card-container {
+  min-height: 700px; 
+  position: relative;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+.card-back {
+  background-color: var(--bg-color);
+  color: var(--main-text-color);
+  padding: 20px;
+  opacity: 0;
+  z-index: 0; 
+  transform: scale(0.9);
+  overflow-y: scroll;
+}
+
+.card-back > * {
+  margin-bottom: 20px;
+}
+
+.card-back::-webkit-scrollbar {
+  display: none;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 100%; 
+}
+
+.country {
+  display: flex;
+  gap: 5px;
+}
+
+.card-back p {
+  line-height: 1.4;
+}
+
+.flags {
+  width: 30px;
+  height: 20px;
+}
+
+.fas.fa-star {
+  color: var(--stars-color);
+}
+
+strong {
+  color: var(--sub-color);
+}
+
+/* Card Hovers */
+.card:hover .card-front {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.card:hover .card-back {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+  box-shadow: 0px 0px 100px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* MEDIA QUERYS */
+@media screen and (max-width: 940px) {
+  .card {
+    width: calc((100% - 40px) / 3);
+  }
+}
+/* Tablet */
+@media screen and (max-width: 768px) {
+  .card {
+    width: calc((100% - 20px) / 2);
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 458px) {
+  /* Header */
+  .page-header {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
 }

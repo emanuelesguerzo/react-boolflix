@@ -16,7 +16,7 @@ function AppHeader() {
         <header className="page-header">
             <div className="main-logo">
                 <h1>
-                    Boolflix
+                    Boolflix   
                 </h1>
             </div>
             <div className="searchbar">

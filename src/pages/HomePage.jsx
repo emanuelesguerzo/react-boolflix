@@ -7,8 +7,8 @@ function HomePage() {
         <div>
             <AppHeader />
 
-            <main>
-                <ul>
+            <main className="container">
+                <ul className="movies-list">
                     <AppCard />
                 </ul>
             </main>

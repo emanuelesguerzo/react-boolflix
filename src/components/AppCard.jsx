@@ -19,8 +19,10 @@ function AppCard() {
     function getRating(score) {
         const stars = [];
         const rating = Math.ceil(score / 2);
-
-        for(let i = 0; i < rating; i++) {
+        if (!rating) {
+            stars.push("N/A")
+        }
+        for (let i = 0; i < rating; i++) {
             stars.push(<i key={i} className="fas fa-star"></i>)
         }
         return stars;
@@ -28,20 +30,33 @@ function AppCard() {
 
     return (
         <>
-        {movies.map((curMovie) => (
-            <li key={curMovie.id}>
-                <img src={curMovie.poster_path ? `https://image.tmdb.org/t/p/w342/${curMovie.poster_path}` : "https://placehold.co/342x400"}/>
-                <h3>{curMovie.title || curMovie.name}</h3>
-                <h4>{curMovie.original_title || curMovie.original_name}</h4>
-                <div>
-                    <img
-                        src={getFlag(curMovie.original_language)}
-                        alt={curMovie.original_language}
-                    />
-                </div>
-                <div>{getRating(curMovie.vote_average)}</div>
-            </li>
-        ))}
+            {movies.map((curMovie) => (
+                <li key={curMovie.id} className="card">
+                    <div className="card-container">
+                        <div className="card-front">
+                            <img
+                                src={curMovie.poster_path ? `https://image.tmdb.org/t/p/w342/${curMovie.poster_path}` : "https://placehold.co/342x513/242323/FFF"}
+                                className="movie-poster"
+                            />
+                        </div>
+                        <div className="card-back">
+                            <div><strong>Titolo:</strong> {curMovie.title || curMovie.name}</div>
+                            <div><strong>Titolo originale:</strong> {curMovie.original_title || curMovie.original_name}</div>
+                            <div><strong>Overview:</strong> {curMovie.overview ? curMovie.overview : "N/A"}</div>
+                            <div className="country">
+                                <strong>Paese:</strong> 
+                                <img
+                                    className="flags"
+                                    src={getFlag(curMovie.original_language)}
+                                    alt={curMovie.original_language}
+                                />
+                            </div>
+                            <div><strong>Voto:</strong> {getRating(curMovie.vote_average)} su 5</div>
+                        </div>
+                    </div>
+
+                </li>
+            ))}
         </>
     )
 }
