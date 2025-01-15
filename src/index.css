@@ -1,6 +1,53 @@
+/* CUSTOM PROPERTIES */
+:root {
+  --main-color: #000000;
+  --sub-color: #db0000;
+  --bg-color: #564d4d;
+  --main-text-color: #ffffff;
+}
+
 /* RESET */
 * {
   margin: 0;
   padding: 0;
-  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* TYPOGRAPHY */
+body {
+  font-family: "Roboto", serif;
+}
+
+/* HEADER */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--main-color);
+  padding: 10px;
+}
+
+.page-header .main-logo h1 {
+  font-family:"Bebas Neue", serif;
+  color: var(--sub-color);
+  font-size: 2.5rem
+}
+
+.searchbar {
+  display: flex;
+  gap: 10px;
+}
+
+.searchbar button {
+  color: var(--main-text-color);
+  border: none;
+  background-color: var(--main-color);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.searchbar input {
+  color: var(--main-text-color);
+  border: none;
+  background-color: var(--main-color);
 }
