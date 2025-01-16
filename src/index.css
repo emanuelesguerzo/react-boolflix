@@ -137,12 +137,16 @@ body {
   height: 20px;
 }
 
-.fas.fa-star {
+.fa-solid.fa-star {
   color: var(--stars-color);
 }
 
 strong {
   color: var(--sub-color);
+}
+
+.fa-regular.fa-star {
+  color: var(--main-text-color)
 }
 
 /* Card Hovers */
